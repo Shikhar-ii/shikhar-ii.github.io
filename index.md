@@ -1,15 +1,424 @@
-<div align="center">
-
-<img src="https://avatars.githubusercontent.com/Shikhar-ii" alt="Shikhar Pandey" width="160" style="border-radius: 50%;" />
-
-# Shikhar Pandey
-
-**Researcher · Engineer**
-
+---
+layout: none
 ---
 
-[![GitHub](https://img.shields.io/badge/GitHub-Shikhar--ii-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Shikhar-ii)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-smartshikhar-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/smartshikhar/)
-[![LeetCode](https://img.shields.io/badge/LeetCode-Practice-FFA116?style=for-the-badge&logo=leetcode&logoColor=white)](https://leetcode.com/u/3049829172/)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shikhar Pandey</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #06060a;
+    color: #f5f0e6;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: none; /* hide default cursor, custom one shows */
+  }
+
+  /* canvas for 3D scene */
+  #scene { position: fixed; inset: 0; z-index: 0; }
+
+  /* canvas for cursor trail */
+  #cursor-trail {
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    pointer-events: none;
+  }
+
+  /* glow overlay */
+  .glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background:
+      radial-gradient(circle at 25% 30%, rgba(0,255,200,0.06), transparent 50%),
+      radial-gradient(circle at 75% 70%, rgba(232,124,168,0.06), transparent 50%);
+  }
+
+  /* custom cursor */
+  .cursor-dot {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00ffd1;
+    box-shadow: 0 0 20px #00ffd1, 0 0 40px #00ffd1;
+    pointer-events: none;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(0,255,209,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, width 0.3s, height 0.3s, border-color 0.3s;
+  }
+  body.hovering .cursor-dot { transform: translate(-50%, -50%) scale(1.4); background: #ff3d7f; box-shadow: 0 0 25px #ff3d7f; }
+  body.hovering .cursor-ring { width: 60px; height: 60px; border-color: rgba(255,61,127,0.6); }
+
+  /* center card */
+  .card {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    pointer-events: none;
+    animation: fadeIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card > * { pointer-events: auto; }
+
+  .photo-wrap {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1.8rem;
+    border-radius: 50%;
+    padding: 3px;
+    background: conic-gradient(from 0deg, #00ffd1, #7c5cff, #ff3d7f, #00ffd1);
+    animation: spin 9s linear infinite;
+    box-shadow: 0 0 60px rgba(0,255,200,0.25);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: #06060a;
+    animation: spin 9s linear infinite reverse;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(0,255,200,0.3);
+  }
+  h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, #00ffd1, #ff3d7f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .role {
+    font-size: 0.78rem;
+    color: #8a8478;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 2.2rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .links a {
+    padding: 0.8rem 1.5rem;
+    border: 1px solid rgba(245, 240, 230, 0.15);
+    border-radius: 100px;
+    color: #f5f0e6;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(6, 6, 10, 0.5);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    cursor: none;
+  }
+  .links a:hover {
+    border-color: #00ffd1;
+    color: #00ffd1;
+    box-shadow: 0 0 25px rgba(0,255,200,0.25);
+    transform: translateY(-2px);
+  }
+
+  /* mobile: show default cursor since touch */
+  @media (hover: none) {
+    html, body, .links a { cursor: auto; }
+    .cursor-dot, .cursor-ring { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="scene"></canvas>
+<canvas id="cursor-trail"></canvas>
+<div class="glow"></div>
+
+<!-- custom cursor -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<div class="card">
+  <div class="photo-wrap">
+    <img class="photo" src="https://avatars.githubusercontent.com/Shikhar-ii" alt="Shikhar Pandey" />
+  </div>
+  <h1>Shikhar <em>Pandey</em></h1>
+  <p class="role">Researcher · Engineer</p>
+  <div class="links">
+    <a href="https://github.com/Shikhar-ii" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/smartshikhar/" target="_blank">LinkedIn</a>
+    <a href="https://leetcode.com/u/3049829172/" target="_blank">LeetCode</a>
+  </div>
 </div>
+
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+// ── 3D BACKGROUND SCENE ──────────────────────────
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x06060a, 0.035);
+
+const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 0, 12);
+
+// dots
+const dotCount = 1000;
+const dotPos = new Float32Array(dotCount * 3);
+const dotColors = new Float32Array(dotCount * 3);
+const palette = [
+  new THREE.Color(0x00ffd1),
+  new THREE.Color(0xff3d7f),
+  new THREE.Color(0x7c5cff),
+  new THREE.Color(0xffffff),
+  new THREE.Color(0xe8a87c),
+];
+for (let i = 0; i < dotCount; i++) {
+  dotPos[i*3]   = (Math.random() - 0.5) * 40;
+  dotPos[i*3+1] = (Math.random() - 0.5) * 30;
+  dotPos[i*3+2] = (Math.random() - 0.5) * 30 - 5;
+  const c = palette[Math.floor(Math.random() * palette.length)];
+  dotColors[i*3]   = c.r;
+  dotColors[i*3+1] = c.g;
+  dotColors[i*3+2] = c.b;
+}
+const dotGeo = new THREE.BufferGeometry();
+dotGeo.setAttribute('position', new THREE.BufferAttribute(dotPos, 3));
+dotGeo.setAttribute('color', new THREE.BufferAttribute(dotColors, 3));
+const dotMat = new THREE.PointsMaterial({
+  size: 0.05,
+  vertexColors: true,
+  transparent: true,
+  opacity: 0.85,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+});
+const dots = new THREE.Points(dotGeo, dotMat);
+scene.add(dots);
+
+// floating code + math
+const snippets = [
+  "def train():", "for x in data:", "loss.backward()", "import torch", "git push",
+  "while True:", "model.fit(X, y)", "console.log(x)", "f(x) = ax² + bx + c",
+  "θ = θ - α∇J(θ)", "loss = MSE(y, ŷ)", "Σ xᵢ / n", "P(A|B)",
+  "e^(iπ) + 1 = 0", "∇ × E = -∂B/∂t", "⟨ψ|H|ψ⟩", "H(X) = -Σ p log p",
+  "O(n log n)", "x ∈ ℝⁿ", "df/dx = 2x", "∫₀^∞ e^(-x²)dx", "α = 0.001",
+  "F = ma", "qᵢⱼ = softmax", "<Component />", "SELECT * FROM", "lambda x: x*2"
+];
+
+function makeSprite(text) {
+  const c = document.createElement('canvas');
+  const ctx = c.getContext('2d');
+  const fs = 48;
+  ctx.font = `${fs}px JetBrains Mono, monospace`;
+  c.width = Math.ceil(ctx.measureText(text).width) + 40;
+  c.height = fs + 20;
+  ctx.font = `${fs}px JetBrains Mono, monospace`;
+  ctx.textBaseline = 'middle';
+  const colors = ['#00ffd1', '#ff3d7f', '#7c5cff', '#e8a87c', '#f5f0e6'];
+  ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+  ctx.fillText(text, 20, c.height / 2);
+  const tex = new THREE.CanvasTexture(c);
+  tex.minFilter = THREE.LinearFilter;
+  const mat = new THREE.SpriteMaterial({
+    map: tex, transparent: true, opacity: 0.7,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+  });
+  const sprite = new THREE.Sprite(mat);
+  const sc = 0.012;
+  sprite.scale.set(c.width * sc, c.height * sc, 1);
+  return sprite;
+}
+
+const sprites = [];
+snippets.forEach(s => {
+  const sp = makeSprite(s);
+  sp.position.set((Math.random()-0.5)*30, (Math.random()-0.5)*20, (Math.random()-0.5)*20 - 4);
+  sp.userData = {
+    speed: 0.005 + Math.random()*0.012,
+    flickerOffset: Math.random()*Math.PI*2,
+    baseOpacity: 0.5 + Math.random()*0.4,
+  };
+  sprites.push(sp);
+  scene.add(sp);
+});
+
+// ── CURSOR EFFECT ────────────────────────────────
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+const trailCanvas = document.getElementById('cursor-trail');
+const tctx = trailCanvas.getContext('2d');
+
+function resizeTrail() {
+  trailCanvas.width = window.innerWidth;
+  trailCanvas.height = window.innerHeight;
+}
+resizeTrail();
+
+const mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
+const ringPos = { x: mouse.x, y: mouse.y };
+const trailParticles = [];
+
+const trailSymbols = ['0','1','{','}','</>','π','Σ','∞','∇','λ','∫','θ','α','β','•','+','>','⟨⟩'];
+const trailColors = ['#00ffd1', '#ff3d7f', '#7c5cff', '#e8a87c'];
+
+window.addEventListener('mousemove', (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+
+  // spawn dot/symbol trail particles
+  for (let i = 0; i < 2; i++) {
+    trailParticles.push({
+      x: mouse.x + (Math.random()-0.5)*8,
+      y: mouse.y + (Math.random()-0.5)*8,
+      vx: (Math.random()-0.5)*1.5,
+      vy: (Math.random()-0.5)*1.5 - 0.5,
+      life: 1.0,
+      decay: 0.012 + Math.random()*0.015,
+      size: 2 + Math.random()*3,
+      color: trailColors[Math.floor(Math.random()*trailColors.length)],
+      symbol: Math.random() < 0.25 ? trailSymbols[Math.floor(Math.random()*trailSymbols.length)] : null,
+    });
+  }
+});
+
+// hover state on links
+document.querySelectorAll('a').forEach(a => {
+  a.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+  a.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+});
+
+// ── ANIMATE ──────────────────────────────────────
+const clock = new THREE.Clock();
+function animate() {
+  const t = clock.getElapsedTime();
+
+  // 3d background
+  dots.rotation.y = t * 0.03;
+  const pos = dots.geometry.attributes.position.array;
+  for (let i = 0; i < dotCount; i++) {
+    pos[i*3+2] += 0.012;
+    if (pos[i*3+2] > 8) pos[i*3+2] = -25;
+  }
+  dots.geometry.attributes.position.needsUpdate = true;
+
+  sprites.forEach(s => {
+    s.position.z += s.userData.speed;
+    if (s.position.z > 8) {
+      s.position.z = -20;
+      s.position.x = (Math.random()-0.5)*30;
+      s.position.y = (Math.random()-0.5)*20;
+    }
+    s.material.opacity = s.userData.baseOpacity + Math.sin(t*2 + s.userData.flickerOffset)*0.2;
+  });
+
+  renderer.render(scene, camera);
+
+  // cursor
+  dot.style.left = mouse.x + 'px';
+  dot.style.top = mouse.y + 'px';
+  ringPos.x += (mouse.x - ringPos.x) * 0.15;
+  ringPos.y += (mouse.y - ringPos.y) * 0.15;
+  ring.style.left = ringPos.x + 'px';
+  ring.style.top = ringPos.y + 'px';
+
+  // cursor trail
+  tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+  for (let i = trailParticles.length - 1; i >= 0; i--) {
+    const p = trailParticles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.02; // gentle gravity
+    p.life -= p.decay;
+    if (p.life <= 0) {
+      trailParticles.splice(i, 1);
+      continue;
+    }
+    tctx.globalAlpha = p.life;
+    if (p.symbol) {
+      tctx.fillStyle = p.color;
+      tctx.font = `${10 + p.size*2}px JetBrains Mono, monospace`;
+      tctx.fillText(p.symbol, p.x, p.y);
+    } else {
+      tctx.fillStyle = p.color;
+      tctx.shadowBlur = 12;
+      tctx.shadowColor = p.color;
+      tctx.beginPath();
+      tctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI*2);
+      tctx.fill();
+      tctx.shadowBlur = 0;
+    }
+  }
+  tctx.globalAlpha = 1;
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  resizeTrail();
+});
+</script>
+
+</body>
+</html>
