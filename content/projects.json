@@ -1,0 +1,22 @@
+{
+  "title": "Projects",
+  "summary": "A portfolio of technical, creative, and research-inspired systems built with strong execution and a clear point of view.",
+  "items": [
+    {
+      "name": "Portfolio Site",
+      "type": "Interactive Web Experience",
+      "details": [
+        "Built a visually rich portfolio that blends 3D motion, code-inspired visuals, and polished storytelling.",
+        "Designed to feel like a futuristic interface rather than a traditional static website."
+      ]
+    },
+    {
+      "name": "Research & Engineering Explorations",
+      "type": "Independent technical work",
+      "details": [
+        "Explored practical systems work that combines research thinking, implementation, and communication.",
+        "Focused on making complex ideas legible and compelling."
+      ]
+    }
+  ]
+}

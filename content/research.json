@@ -1,0 +1,22 @@
+{
+  "title": "Research",
+  "summary": "Interests rooted in technical depth, intellectual exploration, and the use of systems to solve meaningful problems.",
+  "items": [
+    {
+      "name": "Google Scholar Profile",
+      "link": "https://scholar.google.com/citations?user=s6SxyZQAAAAJ&hl=en",
+      "details": [
+        "Research contributions and academic outputs are available through the Google Scholar profile.",
+        "This is the place to connect the portfolio to formal scholarly work."
+      ]
+    },
+    {
+      "name": "GitHub Contributions",
+      "link": "https://github.com/Shikhar-ii",
+      "details": [
+        "Repository activity and technical contributions can be surfaced here.",
+        "This section can bridge research thinking with code output."
+      ]
+    }
+  ]
+}

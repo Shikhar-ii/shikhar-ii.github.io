@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Shikhar Pandey</title>
+<title>Shikhar Pandey | Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,8 +15,12 @@
   html, body {
     width: 100%;
     min-height: 100vh;
-    overflow: hidden;
-    background: #06060a;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(0,255,209,0.12), transparent 20%),
+      radial-gradient(circle at 80% 10%, rgba(255,61,127,0.16), transparent 24%),
+      linear-gradient(135deg, #03030a 0%, #06060a 50%, #010107 100%);
     color: #f5f0e6;
     font-family: 'JetBrains Mono', monospace;
     cursor: none;
@@ -31,8 +35,8 @@
     pointer-events: none;
     z-index: 1;
     background:
-      radial-gradient(circle at 25% 30%, rgba(0,255,200,0.06), transparent 50%),
-      radial-gradient(circle at 75% 70%, rgba(232,124,168,0.06), transparent 50%);
+      radial-gradient(circle at 25% 30%, rgba(0,255,200,0.08), transparent 46%),
+      radial-gradient(circle at 75% 70%, rgba(232,124,168,0.08), transparent 52%);
   }
 
   .cursor-dot {
@@ -74,29 +78,52 @@
     border-color: rgba(255,61,127,0.6);
   }
 
-  .card {
-    position: fixed;
-    inset: 0;
+  .portfolio {
+    position: relative;
     z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    pointer-events: none;
-    animation: fadeIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    width: min(1100px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 3rem 0 5rem;
+    display: grid;
+    gap: 1.25rem;
   }
+
+  .hero, .panel {
+    background: linear-gradient(145deg, rgba(8,8,16,0.95), rgba(15,15,24,0.82));
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 28px;
+    padding: 1.5rem;
+    box-shadow: 0 30px 90px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05);
+    backdrop-filter: blur(18px);
+  }
+
+  .hero {
+    text-align: center;
+    padding-top: 2rem;
+    animation: fadeIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -30% 20% auto;
+    height: 140px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,209,0.18), transparent);
+    transform: rotate(-8deg);
+    pointer-events: none;
+  }
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .card > * { pointer-events: auto; }
 
   .photo-wrap {
     width: 150px;
     height: 150px;
-    margin-bottom: 1.8rem;
+    margin: 0 auto 1.4rem;
     border-radius: 50%;
     padding: 3px;
     background: conic-gradient(from 0deg, #00ffd1, #7c5cff, #ff3d7f, #00ffd1);
@@ -114,9 +141,13 @@
     animation: spin 9s linear infinite reverse;
   }
 
+  h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.04em;
+  }
+
   h1 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: clamp(2.4rem, 6vw, 3.6rem);
     line-height: 1;
     margin-bottom: 0.6rem;
@@ -136,7 +167,16 @@
     color: #8a8478;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    margin-bottom: 2.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    max-width: 760px;
+    margin: 0 auto 1.2rem;
+    line-height: 1.8;
+    color: #d9d0c4;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.06rem;
   }
 
   .links {
@@ -144,9 +184,10 @@
     gap: 0.8rem;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 1rem;
   }
   .links a {
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 1.3rem;
     border: 1px solid rgba(245, 240, 230, 0.15);
     border-radius: 100px;
     color: #f5f0e6;
@@ -167,6 +208,280 @@
     transform: translateY(-2px);
   }
 
+  .section-title {
+    font-size: 0.82rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #00ffd1;
+    margin-bottom: 0.8rem;
+    font-family: 'Cinzel', serif;
+  }
+
+  .panel h2 {
+    font-size: 1.35rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .panel p, .panel li {
+    color: #d8d0c3;
+    line-height: 1.75;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.03rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-item {
+    border: 1px solid rgba(245, 240, 230, 0.08);
+    border-radius: 18px;
+    padding: 1rem;
+    background: rgba(255,255,255,0.03);
+    transform: translateZ(0);
+  }
+
+  .card-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.45rem;
+    color: #fff;
+  }
+
+  .pill {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(0, 255, 209, 0.12);
+    color: #00ffd1;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .placeholder {
+    font-size: 0.92rem;
+    color: #8a8478;
+    margin-top: 0.55rem;
+  }
+
+  .bullet-list {
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .timeline {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .timeline-item {
+    border-left: 1px solid rgba(0,255,209,0.3);
+    padding-left: 1rem;
+  }
+
+  .prompt-box {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 16px;
+    border: 1px dashed rgba(0,255,209,0.35);
+    background: rgba(0,255,209,0.06);
+  }
+
+  .prompt-box strong {
+    color: #00ffd1;
+  }
+
+  .game-console {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .console-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .console-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(0,255,209,0.12);
+    color: #00ffd1;
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .terminal-window {
+    border: 1px solid rgba(0,255,209,0.24);
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(2, 4, 8, 0.95);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 24px 70px rgba(0,0,0,0.4);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .terminal-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .terminal-dots span:nth-child(1) { background: #ff5f57; }
+  .terminal-dots span:nth-child(2) { background: #febc2e; }
+  .terminal-dots span:nth-child(3) { background: #28c840; }
+
+  .terminal-title {
+    color: #8d948f;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #8fffd4;
+    min-height: 320px;
+  }
+
+  .terminal-line {
+    margin-bottom: 0.45rem;
+    white-space: pre-wrap;
+  }
+
+  .terminal-prompt {
+    color: #00ffd1;
+  }
+
+  .terminal-command {
+    color: #f5f0e6;
+  }
+
+  .terminal-output {
+    color: #b8c2bb;
+  }
+
+  .terminal-link {
+    color: #7ed1ff;
+    text-decoration: none;
+  }
+
+  .terminal-link:hover {
+    text-decoration: underline;
+  }
+
+  .node-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .node-btn {
+    border: 1px solid rgba(255,255,255,0.11);
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    color: #f5f0e6;
+    padding: 1rem;
+    border-radius: 18px;
+    text-align: left;
+    cursor: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .node-btn:hover, .node-btn.active {
+    transform: translateY(-3px);
+    border-color: rgba(0,255,209,0.6);
+    box-shadow: 0 0 24px rgba(0,255,209,0.16);
+  }
+
+  .node-btn .glyph {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(0,255,209,0.14);
+    color: #00ffd1;
+    font-size: 0.74rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .node-btn strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+  }
+
+  .node-btn p {
+    color: #cfc3b3;
+    line-height: 1.55;
+    font-size: 0.92rem;
+  }
+
+  .mission-card {
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 22px;
+    padding: 1.2rem;
+    background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .mission-card .meta {
+    display: inline-block;
+    margin-bottom: 0.65rem;
+    color: #00ffd1;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .mission-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .mission-card p {
+    color: #d8d0c3;
+    line-height: 1.75;
+  }
+
+  .mission-list {
+    margin-top: 0.8rem;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.45rem;
+    color: #ece3d4;
+  }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: 1fr; }
+    .portfolio { width: min(100% - 1rem, 1100px); padding: 1rem 0 3rem; }
+    .hero, .panel { padding: 1.2rem; }
+  }
+
   @media (hover: none) {
     html, body, .links a { cursor: auto; }
     .cursor-dot, .cursor-ring { display: none; }
@@ -182,18 +497,105 @@
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 
-<div class="card">
-  <div class="photo-wrap">
-    <img class="photo" src="https://avatars.githubusercontent.com/Shikhar-ii" alt="Shikhar Pandey" />
-  </div>
-  <h1>Shikhar <em>Pandey</em></h1>
-  <p class="role">Researcher · Engineer</p>
-  <div class="links">
-    <a href="https://github.com/Shikhar-ii" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/smartshikhar/" target="_blank">LinkedIn</a>
-    <a href="https://leetcode.com/u/3049829172/" target="_blank">LeetCode</a>
-  </div>
-</div>
+<main class="portfolio">
+  <section class="hero">
+    <div class="photo-wrap">
+      <img class="photo" src="https://avatars.githubusercontent.com/Shikhar-ii" alt="Shikhar Pandey" />
+    </div>
+    <h1>Shikhar <em>Pandey</em></h1>
+    <p class="role">Researcher · Engineer · Storyteller</p>
+    <p class="intro">
+      Welcome to the mission terminal. This portfolio is designed like a locked system of experiences, where each node reveals a different layer of your work: career, leadership, projects, research, and the world of camera-led creativity.
+    </p>
+    <div class="links">
+      <a href="https://github.com/Shikhar-ii" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/smartshikhar/" target="_blank">LinkedIn</a>
+      <a href="https://leetcode.com/u/3049829172/" target="_blank">LeetCode</a>
+    </div>
+    <div class="prompt-box">
+      <strong>Prototype mode:</strong> each button below is a mission node. When you fill in your real details, these nodes become your actual portfolio archive.
+    </div>
+  </section>
+
+  <section class="panel game-console">
+    <div class="console-head">
+      <div>
+        <p class="section-title">Mission Console</p>
+        <h2>Choose a node to unlock</h2>
+      </div>
+      <div class="console-status">Status · 5 Nodes</div>
+    </div>
+
+    <div class="node-grid">
+      <button class="node-btn active" data-target="experience">
+        <span class="glyph">01</span>
+        <strong>Experience</strong>
+        <p>Career path, roles, and impact.</p>
+      </button>
+      <button class="node-btn" data-target="leadership">
+        <span class="glyph">02</span>
+        <strong>Leadership</strong>
+        <p>Mentorship, influence, and team energy.</p>
+      </button>
+      <button class="node-btn" data-target="projects">
+        <span class="glyph">03</span>
+        <strong>Projects</strong>
+        <p>Built work, proof of craft, and outcomes.</p>
+      </button>
+      <button class="node-btn" data-target="research">
+        <span class="glyph">04</span>
+        <strong>Research</strong>
+        <p>Ideas, questions, and intellectual depth.</p>
+      </button>
+      <button class="node-btn" data-target="camera" style="grid-column: 1 / -1;">
+        <span class="glyph">05</span>
+        <strong>From Camera</strong>
+        <p>Visual storytelling, sound, and the creative side of your identity.</p>
+      </button>
+    </div>
+
+    <div class="terminal-window">
+      <div class="terminal-bar">
+        <div class="terminal-dots"><span></span><span></span><span></span></div>
+        <div class="terminal-title">portfolio_terminal</div>
+      </div>
+      <div class="terminal-body" id="mission-view">
+        <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-command">init portfolio</span></div>
+        <div class="terminal-line"><span class="terminal-output">Loading mission modules...</span></div>
+        <div class="terminal-line"><span class="terminal-output">Experience / Leadership / Projects / Research / Camera</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="scripts/content.js"></script>
+<script>
+  const missionButtons = document.querySelectorAll('.node-btn');
+  const missionView = document.getElementById('mission-view');
+  const missionData = window.contentModules;
+
+  function renderMission(target) {
+    const data = missionData[target];
+    if (!data) return;
+
+    missionView.innerHTML = `
+      <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-command">open ${data.title}</span></div>
+      <div class="terminal-line"><span class="terminal-output">${data.intro}</span></div>
+      ${data.bullets.map((item) => `<div class="terminal-line"><span class="terminal-output">- ${item}</span></div>`).join('')}
+      ${data.links.length ? `<div class="terminal-line"><span class="terminal-output">references:</span></div>${data.links.map(link => `<div class="terminal-line"><span class="terminal-output">• <a class="terminal-link" href="${link.url}" target="_blank" rel="noreferrer">${link.label}</a></span></div>`).join('')}` : ''}
+    `;
+  }
+
+  missionButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      missionButtons.forEach((btn) => btn.classList.remove('active'));
+      button.classList.add('active');
+      renderMission(button.dataset.target);
+    });
+  });
+
+  renderMission('experience');
+</script>
 
 <script type="importmap">
 { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
@@ -202,7 +604,6 @@
 <script type="module">
 import * as THREE from 'three';
 
-// ── 3D BACKGROUND ────────────────────────────────
 const canvas = document.getElementById('scene');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -214,10 +615,6 @@ scene.fog = new THREE.FogExp2(0x06060a, 0.035);
 const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
 camera.position.set(0, 0, 12);
 
-// dots
-const dotCount = 1000;
-const dotPos = new Float32Array(dotCount * 3);
-const dotColors = new Float32Array(dotCount * 3);
 const palette = [
   new THREE.Color(0x00ffd1),
   new THREE.Color(0xff3d7f),
@@ -225,14 +622,18 @@ const palette = [
   new THREE.Color(0xffffff),
   new THREE.Color(0xe8a87c),
 ];
+
+const dotCount = 1200;
+const dotPos = new Float32Array(dotCount * 3);
+const dotColors = new Float32Array(dotCount * 3);
 for (let i = 0; i < dotCount; i++) {
-  dotPos[i*3]   = (Math.random() - 0.5) * 40;
-  dotPos[i*3+1] = (Math.random() - 0.5) * 30;
-  dotPos[i*3+2] = (Math.random() - 0.5) * 30 - 5;
+  dotPos[i * 3] = (Math.random() - 0.5) * 45;
+  dotPos[i * 3 + 1] = (Math.random() - 0.5) * 35;
+  dotPos[i * 3 + 2] = (Math.random() - 0.5) * 35 - 6;
   const c = palette[Math.floor(Math.random() * palette.length)];
-  dotColors[i*3]   = c.r;
-  dotColors[i*3+1] = c.g;
-  dotColors[i*3+2] = c.b;
+  dotColors[i * 3] = c.r;
+  dotColors[i * 3 + 1] = c.g;
+  dotColors[i * 3 + 2] = c.b;
 }
 const dotGeo = new THREE.BufferGeometry();
 dotGeo.setAttribute('position', new THREE.BufferAttribute(dotPos, 3));
@@ -241,27 +642,49 @@ const dotMat = new THREE.PointsMaterial({
   size: 0.05,
   vertexColors: true,
   transparent: true,
-  opacity: 0.85,
+  opacity: 0.9,
   blending: THREE.AdditiveBlending,
   depthWrite: false,
 });
 const dots = new THREE.Points(dotGeo, dotMat);
 scene.add(dots);
 
-// floating code + math
+const orbitGroup = new THREE.Group();
+const torus = new THREE.Mesh(
+  new THREE.TorusKnotGeometry(1.3, 0.28, 160, 16),
+  new THREE.MeshBasicMaterial({ color: 0x00ffd1, transparent: true, opacity: 0.22, wireframe: true })
+);
+torus.position.set(0, 0.6, -2);
+orbitGroup.add(torus);
+
+const ico = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(1.1, 1),
+  new THREE.MeshBasicMaterial({ color: 0xff3d7f, transparent: true, opacity: 0.22, wireframe: true })
+);
+ico.position.set(-3.2, -1.2, -1.5);
+orbitGroup.add(ico);
+
+const cube = new THREE.Mesh(
+  new THREE.BoxGeometry(1.2, 1.2, 1.2),
+  new THREE.MeshBasicMaterial({ color: 0x7c5cff, transparent: true, opacity: 0.2, wireframe: true })
+);
+cube.position.set(3.2, 1.4, -1.2);
+orbitGroup.add(cube);
+scene.add(orbitGroup);
+
 const snippets = [
-  "def train():", "for x in data:", "loss.backward()", "import torch", "git push",
-  "while True:", "model.fit(X, y)", "console.log(x)", "f(x) = ax² + bx + c",
-  "θ = θ - α∇J(θ)", "loss = MSE(y, ŷ)", "Σ xᵢ / n", "P(A|B)",
-  "e^(iπ) + 1 = 0", "∇ × E = -∂B/∂t", "⟨ψ|H|ψ⟩", "H(X) = -Σ p log p",
-  "O(n log n)", "x ∈ ℝⁿ", "df/dx = 2x", "∫₀^∞ e^(-x²)dx", "α = 0.001",
-  "F = ma", "qᵢⱼ = softmax", "<Component />", "SELECT * FROM", "lambda x: x*2"
+  'def train():', 'for x in data:', 'loss.backward()', 'import torch', 'git push',
+  'while True:', 'model.fit(X, y)', 'console.log(x)', 'f(x) = ax² + bx + c',
+  'θ = θ - α∇J(θ)', 'loss = MSE(y, ŷ)', 'Σ xᵢ / n', 'P(A|B)',
+  'e^(iπ) + 1 = 0', '∇ × E = -∂B/∂t', '⟨ψ|H|ψ⟩', 'H(X) = -Σ p log p',
+  'O(n log n)', 'x ∈ ℝⁿ', 'df/dx = 2x', '∫₀^∞ e^(-x²)dx', 'α = 0.001',
+  'F = ma', 'qᵢⱼ = softmax', '<Component />', 'SELECT * FROM', 'lambda x: x*2'
 ];
 
 function makeSprite(text) {
   const c = document.createElement('canvas');
   const ctx = c.getContext('2d');
-  const fs = 48;
+  const fs = 46;
   ctx.font = `${fs}px JetBrains Mono, monospace`;
   c.width = Math.ceil(ctx.measureText(text).width) + 40;
   c.height = fs + 20;
@@ -273,8 +696,11 @@ function makeSprite(text) {
   const tex = new THREE.CanvasTexture(c);
   tex.minFilter = THREE.LinearFilter;
   const mat = new THREE.SpriteMaterial({
-    map: tex, transparent: true, opacity: 0.7,
-    blending: THREE.AdditiveBlending, depthWrite: false,
+    map: tex,
+    transparent: true,
+    opacity: 0.7,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
   });
   const sprite = new THREE.Sprite(mat);
   const sc = 0.012;
@@ -283,19 +709,19 @@ function makeSprite(text) {
 }
 
 const sprites = [];
-snippets.forEach(s => {
+snippets.forEach((s, index) => {
   const sp = makeSprite(s);
-  sp.position.set((Math.random()-0.5)*30, (Math.random()-0.5)*20, (Math.random()-0.5)*20 - 4);
+  sp.position.set((Math.random() - 0.5) * 32, (Math.random() - 0.5) * 24, (Math.random() - 0.5) * 20 - 4);
   sp.userData = {
-    speed: 0.005 + Math.random()*0.012,
-    flickerOffset: Math.random()*Math.PI*2,
-    baseOpacity: 0.5 + Math.random()*0.4,
+    speed: 0.004 + Math.random() * 0.01,
+    flickerOffset: (index / snippets.length) * Math.PI * 2,
+    baseOpacity: 0.45 + Math.random() * 0.35,
+    drift: (Math.random() - 0.5) * 0.01,
   };
   sprites.push(sp);
   scene.add(sp);
 });
 
-// ── CURSOR EFFECT ────────────────────────────────
 const dot = document.querySelector('.cursor-dot');
 const ring = document.querySelector('.cursor-ring');
 const trailCanvas = document.getElementById('cursor-trail');
@@ -307,11 +733,11 @@ function resizeTrail() {
 }
 resizeTrail();
 
-const mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
+const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 const ringPos = { x: mouse.x, y: mouse.y };
 const trailParticles = [];
 
-const trailSymbols = ['0','1','{','}','π','Σ','∞','∇','λ','∫','θ','α','β','•','+','⟨⟩'];
+const trailSymbols = ['0', '1', '{', '}', 'π', 'Σ', '∞', '∇', 'λ', '∫', 'θ', 'α', 'β', '•', '+', '⟨⟩'];
 const trailColors = ['#00ffd1', '#ff3d7f', '#7c5cff', '#e8a87c'];
 
 window.addEventListener('mousemove', (e) => {
@@ -319,20 +745,20 @@ window.addEventListener('mousemove', (e) => {
   mouse.y = e.clientY;
   for (let i = 0; i < 2; i++) {
     trailParticles.push({
-      x: mouse.x + (Math.random()-0.5)*8,
-      y: mouse.y + (Math.random()-0.5)*8,
-      vx: (Math.random()-0.5)*1.5,
-      vy: (Math.random()-0.5)*1.5 - 0.5,
+      x: mouse.x + (Math.random() - 0.5) * 8,
+      y: mouse.y + (Math.random() - 0.5) * 8,
+      vx: (Math.random() - 0.5) * 1.5,
+      vy: (Math.random() - 0.5) * 1.5 - 0.5,
       life: 1.0,
-      decay: 0.012 + Math.random()*0.015,
-      size: 2 + Math.random()*3,
-      color: trailColors[Math.floor(Math.random()*trailColors.length)],
-      symbol: Math.random() < 0.25 ? trailSymbols[Math.floor(Math.random()*trailSymbols.length)] : null,
+      decay: 0.012 + Math.random() * 0.015,
+      size: 2 + Math.random() * 3,
+      color: trailColors[Math.floor(Math.random() * trailColors.length)],
+      symbol: Math.random() < 0.25 ? trailSymbols[Math.floor(Math.random() * trailSymbols.length)] : null,
     });
   }
 });
 
-document.querySelectorAll('a').forEach(a => {
+document.querySelectorAll('a').forEach((a) => {
   a.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
   a.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
 });
@@ -344,19 +770,29 @@ function animate() {
   dots.rotation.y = t * 0.03;
   const pos = dots.geometry.attributes.position.array;
   for (let i = 0; i < dotCount; i++) {
-    pos[i*3+2] += 0.012;
-    if (pos[i*3+2] > 8) pos[i*3+2] = -25;
+    pos[i * 3 + 2] += 0.012;
+    if (pos[i * 3 + 2] > 8) pos[i * 3 + 2] = -25;
   }
   dots.geometry.attributes.position.needsUpdate = true;
 
-  sprites.forEach(s => {
+  orbitGroup.rotation.x = t * 0.2;
+  orbitGroup.rotation.y = t * 0.18;
+  torus.rotation.x = t * 0.8;
+  torus.rotation.y = t * 0.4;
+  ico.rotation.x = -t * 0.35;
+  ico.rotation.y = t * 0.25;
+  cube.rotation.x = t * 0.2;
+  cube.rotation.y = -t * 0.3;
+
+  sprites.forEach((s) => {
     s.position.z += s.userData.speed;
+    s.position.x += s.userData.drift;
     if (s.position.z > 8) {
       s.position.z = -20;
-      s.position.x = (Math.random()-0.5)*30;
-      s.position.y = (Math.random()-0.5)*20;
+      s.position.x = (Math.random() - 0.5) * 32;
+      s.position.y = (Math.random() - 0.5) * 24;
     }
-    s.material.opacity = s.userData.baseOpacity + Math.sin(t*2 + s.userData.flickerOffset)*0.2;
+    s.material.opacity = s.userData.baseOpacity + Math.sin(t * 2 + s.userData.flickerOffset) * 0.2;
   });
 
   renderer.render(scene, camera);
@@ -379,14 +815,14 @@ function animate() {
     tctx.globalAlpha = p.life;
     if (p.symbol) {
       tctx.fillStyle = p.color;
-      tctx.font = `${10 + p.size*2}px JetBrains Mono, monospace`;
+      tctx.font = `${10 + p.size * 2}px JetBrains Mono, monospace`;
       tctx.fillText(p.symbol, p.x, p.y);
     } else {
       tctx.fillStyle = p.color;
       tctx.shadowBlur = 12;
       tctx.shadowColor = p.color;
       tctx.beginPath();
-      tctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI*2);
+      tctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
       tctx.fill();
       tctx.shadowBlur = 0;
     }
